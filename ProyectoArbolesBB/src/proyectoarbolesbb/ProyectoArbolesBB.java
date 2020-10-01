@@ -10,7 +10,7 @@ public class ProyectoArbolesBB {
     final static String TITLE_MENU = "**ARBOLBB**";     
     public static void main(String[] args) {
         ArbolBB arbol = new ArbolBB();
-        String menu ="****ARBOL BINARIO DE BUSQUEDA****\n1. Mostrar\n2. Insertar\n3. Buscar\n4. Modificar\n5. Eliminar\n6. Mostrar altura del árbol\n7. Mostrar nodos de un nivel dado\n8. Insertar Lista Generalizada\n0. SALIR";
+        String menu ="****ARBOL BINARIO DE BUSQUEDA****\n1. Mostrar\n2. Insertar\n3. Buscar\n4. Modificar\n5. Eliminar\n6. Mostrar altura del árbol\n7. Mostrar nodos de un nivel dado\n8. Insertar Lista Generalizada\n9. Mostrar LG\n10. Mostrar LG por Dato\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
         String nombreInsertar;
         String datoArbolGeneralizado = null;

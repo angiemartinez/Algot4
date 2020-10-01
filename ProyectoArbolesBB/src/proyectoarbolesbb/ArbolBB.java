@@ -364,5 +364,78 @@ public class ArbolBB {
 		}
 		return nodo;
 	}
-
+        
+        public void mostrarListaGeneralizada(NodoGeneralizado p){
+            
+            NodoGeneralizado q = p;
+            while(q != null){
+                if(q.isSw()== 0){
+                    
+                    JOptionPane.showMessageDialog(null, "El dato es" + q.getDato(), TITLE_MENU,
+						JOptionPane.ERROR_MESSAGE);
+                }else{
+                    mostrarListaGeneralizada(q.getLigaLista());
+                }
+                q = q.getLiga();
+            }
+            
+            JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU,
+                            JOptionPane.ERROR_MESSAGE);
+        }
+        
+        public void mostrarGrado(NodoGeneralizado p, int dato){
+            
+            NodoGeneralizado q=p, aux; 
+            int cont= 0;
+            
+            while(q != null){
+                if(q.isSw()==0){
+                    if(q.getDato() == dato){
+                        if(q==p){
+                            aux = q.getLiga();
+                            while(aux != null){
+                                cont = cont + 1;
+                                aux = aux.getLiga();
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null, "El grado del dato "+dato+ "es "+ cont, TITLE_MENU,
+                            JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    mostrarGrado(q.getLigaLista(), dato);
+                }
+                q= q.getLiga();
+            }
+            if(cont == 0){
+                        JOptionPane.showMessageDialog(null, "El dato no existe ", TITLE_MENU,
+                            JOptionPane.ERROR_MESSAGE);                
+            }
+        }
+        
+	// Metodo Buscar Dato
+	public void buscarDatoG(int dato) {
+		NodoGeneralizado p = raizGeneralizada;
+		boolean bandera = false;
+                
+		while (p != null & bandera == false) {
+                    if(p.isSw()==0){
+                        if (dato == p.getDato()) {
+                            bandera = true;
+			}
+                        else {
+                            mostrarGrado(p.getLigaLista(), dato);
+			}                        
+                    }else{
+                        p= p.getLiga();
+                    }     
+		}
+		if (bandera == true) {
+                    
+                    JOptionPane.showMessageDialog(null,"El dato buscado existe",
+                            TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "El dato buscado " + dato + " NO se encontró ", TITLE_MENU,
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}        
 }
