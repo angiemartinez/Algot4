@@ -13,8 +13,9 @@ public class ProyectoArbolesBB {
         String menu ="****ARBOL BINARIO DE BUSQUEDA****\n1. Mostrar\n2. Insertar\n3. Buscar\n4. Modificar\n5. Eliminar\n6. Mostrar altura del Ã¡rbol\n7. Mostrar nodos de un nivel dado\n8. Insertar Lista Generalizada\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
         String nombreInsertar;
-        int datoGeneralizado = 0;
-        int validarInsertarDato;
+        String datoArbolGeneralizado = null;
+        int validarIngresoDatos = 0; 
+        String padre = null;
         
         int cedulaInsertar,buscarConCedula,buscarCedulaModificar,buscarCedulaEliminar;        
         do{
@@ -59,18 +60,21 @@ public class ProyectoArbolesBB {
                     nivelABuscar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el nivel a buscar:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
                     arbol.mostrarNodo(nivelABuscar);
                     break;                     
-                case 8:
-                    validarInsertarDato = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desea ingresar un Nodo marque 0, si desea ingresar un dato marque 1, de lo contrario marque 2", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
-                    
-                    while (validarInsertarDato == 0 || validarInsertarDato == 1) {
-                    	
-                        if (validarInsertarDato == 1) {
-                        	datoGeneralizado = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese un dato", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
-    					}
-                        arbol.insertarDatoGeneralizado(datoGeneralizado);
-                        validarInsertarDato = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desea ingresar un Nodo marque 0, si desea ingresar un dato marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
-					}                    
-                   
+                case 8:          
+                	
+                	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                	padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                	arbol.insertarArbolGeneral(datoArbolGeneralizado, null);
+
+                	while (validarIngresoDatos == 0) {
+                		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desea información hermana marque 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
+						if (validarIngresoDatos == 0) {
+							datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+							padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+							arbol.insertarArbolGeneral(datoArbolGeneralizado, padre);						
+						}
+					
+					}
                     break;                    
                 case 0:
                     System.exit(0);

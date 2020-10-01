@@ -8,14 +8,14 @@ import javax.swing.JOptionPane;
 public class ArbolBB {
 	NodoBB raiz;
 	int altura = 0;
-	NodoGeneralizado raizGeneralizada;
+	NodoGeneral hijosAux[];
+	NodoGeneral nodoRaiz;
 
 	final static String TITLE_MENU = "**ARBOLBB**";
 
 	// Método Constructor
 	public ArbolBB() {
 		raiz = null;
-		raizGeneralizada = null;
 	}
 
 	// Método Recorer IN-ORDEN
@@ -90,8 +90,6 @@ public class ArbolBB {
 		}
 
 	}
-	
-	
 
 	public void insertar2(String nombre, int cedula, int edad) {
 		raiz = insertarNodo(raiz, nombre, cedula, edad);
@@ -338,32 +336,33 @@ public class ArbolBB {
 	public NodoBB getRaiz() {
 		return (raiz);
 	}
+
+	public void insertarArbolGeneral(String dato, String padre) {
+		nodoRaiz = insertarArbolGeneralizado(nodoRaiz, dato,  padre);
+	}
 	
-	//Listas generalizadas
-	
-	
-	public void insertarDatoGeneralizado(int dato) {
-		if (dato == 0) {
-			raizGeneralizada = insertarNodo(raizGeneralizada, dato,0);
-		}else {
-			raizGeneralizada = insertarNodo(raizGeneralizada, dato,1);
-		}		
+	public NodoGeneral insertarArbolGeneralizado(NodoGeneral nodo, String dato, String padre) {
+
+		if (nodo == null) {
+			nodo = new NodoGeneral(dato);
+		} else {
+			NodoGeneral nuevoNodo = new NodoGeneral(dato);
+
+			if (nodo.getDato().equals(padre)) {
+				nodo.ingresarHijo(nuevoNodo);
+			} else {
+				for (int i = 0; i < nodo.noHijos; i++) {
+					if (nodo.hijos[i].getDato().equals(padre)) {
+						nodo.hijos[i].ingresarHijo(nuevoNodo);
+					} else {
+						insertarArbolGeneralizado(nodo.hijos[i], dato, padre);
+					}
+				}
+
+			}
+
+		}
+		return nodo;
 	}
 
-	public NodoGeneralizado insertarNodo(NodoGeneralizado p, int dato, int tieneNodo) {
-		if (p == null) {
-			p = new NodoGeneralizado(dato);
-		} else if (tieneNodo == 1) {
-			NodoGeneralizado direccionSgteNodo = insertarNodo(p.getLiga(), dato,1);
-			p.setLiga(direccionSgteNodo);
-			p.setDato(dato);
-		} else if (tieneNodo == 0) {
-			NodoGeneralizado direccionSubArbol = insertarNodo(p.getLiga(), dato,0);
-			p.setLigaLista(direccionSubArbol);
-		} else {
-			JOptionPane.showMessageDialog(null, "Dato duplicado", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
-		}
-		
-		return p;
-	}
 }
