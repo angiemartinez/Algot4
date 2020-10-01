@@ -72,10 +72,18 @@ public class ProyectoArbolesBB {
 							datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
 							padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
 							arbol.insertarArbolGeneral(datoArbolGeneralizado, padre);						
-						}
-					
+						}					
 					}
-                    break;                    
+                    break;  
+                case 9:   
+                	arbol.mostrarListaGeneralizada(arbol.nodoRaiz);
+                case 10:   
+                	arbol.mostrarRaiz();
+                    break; 
+                case 11:   
+                	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                	arbol.buscarDato(datoArbolGeneralizado);
+                    break;                     
                 case 0:
                     System.exit(0);
                     break;

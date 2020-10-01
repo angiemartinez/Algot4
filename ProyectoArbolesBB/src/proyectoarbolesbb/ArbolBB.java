@@ -338,11 +338,60 @@ public class ArbolBB {
 	public NodoBB getRaiz() {
 		return (raiz);
 	}
+	
+	public void mostrarListaGeneralizada(NodoGeneral p) {
+		if(p != null) {
+			System.out.println("Dato" + p.getDato());
+			if (p.noHijos > 0) {
+				for (int i = 0; i < p.noHijos; i++) {
+					mostrarListaGeneralizada(p.hijos[i]);
+				}					
+			}
+		}else {			
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
 
-	public void insertarArbolGeneral(String dato, String padre) {
-		nodoRaiz = insertarArbolGeneralizado(nodoRaiz, dato,  padre);
+		
 	}
 	
+	public void mostrarRaiz() {
+		System.out.println("La raiz es:" + nodoRaiz.getDato());
+	}
+
+	public void buscarDato(String dato) {
+		buscarDato(nodoRaiz, dato);
+	}
+	
+	public void buscarDato(NodoGeneral p,String dato) {
+		
+		if(p != null) {			
+			if (p.getDato().equals(dato)) {
+				System.out.println("Dato esta en la raiz");
+			}else {
+				if (p.noHijos > 0) {
+					for (int i = 0; i < p.noHijos; i++) {
+						if (p.hijos[i].getDato().equals(dato)) {
+							System.out.println("El dato existe!");
+							return;
+						}else {
+							buscarDato(p.hijos[i],dato);
+						}
+						
+					}					
+				}
+			}
+			
+		}else {			
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+
+		
+	}
+	
+	public void insertarArbolGeneral(String dato, String padre) {
+		nodoRaiz = insertarArbolGeneralizado(nodoRaiz, dato, padre);
+	}
+
 	public NodoGeneral insertarArbolGeneralizado(NodoGeneral nodo, String dato, String padre) {
 
 		if (nodo == null) {
@@ -366,78 +415,73 @@ public class ArbolBB {
 		}
 		return nodo;
 	}
-        
-        public void mostrarListaGeneralizada(NodoGeneralizado p){
-            
-            NodoGeneralizado q = p;
-            while(q != null){
-                if(q.isSw()== 0){
-                    
-                    JOptionPane.showMessageDialog(null, "El dato es" + q.getDato(), TITLE_MENU,
-						JOptionPane.ERROR_MESSAGE);
-                }else{
-                    mostrarListaGeneralizada(q.getLigaLista());
-                }
-                q = q.getLiga();
-            }
-            
-            JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU,
-                            JOptionPane.ERROR_MESSAGE);
-        }
-        
-        public void mostrarGrado(NodoGeneralizado p, int dato){
-            
-            NodoGeneralizado q=p, aux; 
-            int cont= 0;
-            
-            while(q != null){
-                if(q.isSw()==0){
-                    if(q.getDato() == dato){
-                        if(q==p){
-                            aux = q.getLiga();
-                            while(aux != null){
-                                cont = cont + 1;
-                                aux = aux.getLiga();
-                            }
-                        }
-                        JOptionPane.showMessageDialog(null, "El grado del dato "+dato+ "es "+ cont, TITLE_MENU,
-                            JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    mostrarGrado(q.getLigaLista(), dato);
-                }
-                q= q.getLiga();
-            }
-            if(cont == 0){
-                        JOptionPane.showMessageDialog(null, "El dato no existe ", TITLE_MENU,
-                            JOptionPane.ERROR_MESSAGE);                
-            }
-        }
-        
+
+	public void mostrarListaGeneralizada(NodoGeneralizado p) {
+
+		NodoGeneralizado q = p;
+		while (q != null) {
+			if (q.isSw() == 0) {
+
+				JOptionPane.showMessageDialog(null, "El dato es" + q.getDato(), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+			} else {
+				mostrarListaGeneralizada(q.getLigaLista());
+			}
+			q = q.getLiga();
+		}
+
+		JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void mostrarGrado(NodoGeneralizado p, int dato) {
+
+		NodoGeneralizado q = p, aux;
+		int cont = 0;
+
+		while (q != null) {
+			if (q.isSw() == 0) {
+				if (q.getDato() == dato) {
+					if (q == p) {
+						aux = q.getLiga();
+						while (aux != null) {
+							cont = cont + 1;
+							aux = aux.getLiga();
+						}
+					}
+					JOptionPane.showMessageDialog(null, "El grado del dato " + dato + "es " + cont, TITLE_MENU,
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				mostrarGrado(q.getLigaLista(), dato);
+			}
+			q = q.getLiga();
+		}
+		if (cont == 0) {
+			JOptionPane.showMessageDialog(null, "El dato no existe ", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	// Metodo Buscar Dato
 	public void buscarDatoG(int dato) {
 		NodoGeneralizado p = raizGeneralizada;
 		boolean bandera = false;
-                
+
 		while (p != null & bandera == false) {
-                    if(p.isSw()==0){
-                        if (dato == p.getDato()) {
-                            bandera = true;
+			if (p.isSw() == 0) {
+				if (dato == p.getDato()) {
+					bandera = true;
+				} else {
+					mostrarGrado(p.getLigaLista(), dato);
+				}
+			} else {
+				p = p.getLiga();
 			}
-                        else {
-                            mostrarGrado(p.getLigaLista(), dato);
-			}                        
-                    }else{
-                        p= p.getLiga();
-                    }     
 		}
 		if (bandera == true) {
-                    
-                    JOptionPane.showMessageDialog(null,"El dato buscado existe",
-                            TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+
+			JOptionPane.showMessageDialog(null, "El dato buscado existe", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "El dato buscado " + dato + " NO se encontró ", TITLE_MENU,
 					JOptionPane.ERROR_MESSAGE);
 		}
-	}        
+	}
 }
