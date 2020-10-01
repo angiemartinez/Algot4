@@ -3,11 +3,11 @@ package proyectoarbolesbb;
 public class NodoGeneralizado {
 	
 	int sw;
-	String dato;
-	NodoGeneralizado liga[];
-	NodoGeneralizado ligaLista[];
+	int dato;
+	NodoGeneralizado liga;
+	NodoGeneralizado ligaLista;
 	
-	public NodoGeneralizado(String dato) {
+	public NodoGeneralizado(int dato) {
 		super();
 		this.sw = 0;
 		this.dato = dato;
@@ -23,27 +23,27 @@ public class NodoGeneralizado {
 		this.sw = sw;
 	}
 
-	public String getDato() {
+	public int getDato() {
 		return dato;
 	}
 
-	public void setDato(String dato) {
+	public void setDato(int dato) {
 		this.dato = dato;
 	}
 
-	public NodoGeneralizado[] getLiga() {
+	public NodoGeneralizado getLiga() {
 		return liga;
 	}
 
-	public void setLiga(NodoGeneralizado[] liga) {
+	public void setLiga(NodoGeneralizado liga) {
 		this.liga = liga;
 	}
 
-	public NodoGeneralizado[] getLigaLista() {
+	public NodoGeneralizado getLigaLista() {
 		return ligaLista;
 	}
 
-	public void setLigaLista(NodoGeneralizado[] ligaLista) {
+	public void setLigaLista(NodoGeneralizado ligaLista) {
 		this.ligaLista = ligaLista;
 	}	
 

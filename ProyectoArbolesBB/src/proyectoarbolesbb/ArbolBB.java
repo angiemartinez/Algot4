@@ -10,12 +10,14 @@ public class ArbolBB {
 	int altura = 0;
 	NodoGeneral hijosAux[];
 	NodoGeneral nodoRaiz;
+	NodoGeneralizado raizGeneralizada;
 
 	final static String TITLE_MENU = "**ARBOLBB**";
 
 	// Método Constructor
 	public ArbolBB() {
 		raiz = null;
+		raizGeneralizada = null;
 	}
 
 	// Método Recorer IN-ORDEN
