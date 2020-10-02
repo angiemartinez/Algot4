@@ -10,7 +10,16 @@ public class ProyectoArbolesBB {
     final static String TITLE_MENU = "**ARBOLBB**";     
     public static void main(String[] args) {
         ArbolBB arbol = new ArbolBB();
-        String menu ="****ARBOL BINARIO DE BUSQUEDA****\n1. Mostrar\n2. Insertar\n3. Buscar\n4. Modificar\n5. Eliminar\n6. Mostrar altura del árbol\n7. Mostrar nodos de un nivel dado\n8. Insertar Lista Generalizada\n9. Mostrar LG\n10. Mostrar LG por Dato\n0. SALIR";
+        //String menu ="****ARBOL BINARIO DE BUSQUEDA****\n1. Mostrar\n2. Insertar\n3. Buscar\n4. Modificar\n5. Eliminar\n6. Mostrar altura del árbol\n7. Mostrar nodos de un nivel dado\n8. Insertar Lista Generalizada\n9. Mostrar LG\n10. Mostrar LG por Dato\n0. SALIR";
+        String menu ="****ARBOL BINARIO DE BUSQUEDA****"
+                + "\n1. Insertar LG"
+                + "\n2. Mostrar LG"
+                + "\n3. Mostrar Raiz"
+                + "\n4. Buscar Dato"
+                + "\n5. Mostrar Raices"
+                + "\n6. Contar Hojas LG"
+                + "\n7. Mostrar Grado DatoLG"
+                + "\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
         String nombreInsertar;
         String datoArbolGeneralizado = null;
@@ -21,7 +30,7 @@ public class ProyectoArbolesBB {
         do{
             opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
             switch(opcion){
-                case 1: 
+                /*case 1: 
                     if(arbol.getRaiz() != null ){
                         arbol.recorrerIN_ORDEN(arbol.getRaiz()); 
                     }else{
@@ -59,15 +68,15 @@ public class ProyectoArbolesBB {
                 case 7:
                     nivelABuscar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el nivel a buscar:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
                     arbol.mostrarNodo(nivelABuscar);
-                    break;                     
-                case 8:          
+                    break;  */                   
+                case 1:          
                 	
                 	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	arbol.insertarArbolGeneral(datoArbolGeneralizado, null);
 
                 	while (validarIngresoDatos == 0) {
-                		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desea informaci�n hermana marque 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
+                		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desea informaci�n hermana marque 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
 						if (validarIngresoDatos == 0) {
 							datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
 							padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
@@ -75,15 +84,25 @@ public class ProyectoArbolesBB {
 						}					
 					}
                     break;  
-                case 9:   
+                case 2:   
                 	arbol.mostrarListaGeneralizada(arbol.nodoRaiz);
-                case 10:   
+                case 3:   
                 	arbol.mostrarRaiz();
                     break; 
-                case 11:   
+                case 4:   
                 	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	arbol.buscarDato(datoArbolGeneralizado);
-                    break;                     
+                    break;  
+                case 5:
+                        arbol.mostrarListaRaizGeneralizada(arbol.nodoRaiz);
+                    break;
+                case 6:
+                        arbol.contarHojaGeneralizada(arbol.nodoRaiz);
+                    break;        
+                case 7:
+                    datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                        arbol.mostrarGradoDatoLG(datoArbolGeneralizado);
+                    break;                      
                 case 0:
                     System.exit(0);
                     break;
