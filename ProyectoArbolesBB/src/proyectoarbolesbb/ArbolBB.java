@@ -11,6 +11,8 @@ public class ArbolBB {
 	NodoGeneral hijosAux[];
 	NodoGeneral nodoRaiz;
 	NodoGeneralizado raizGeneralizada;
+	NodoGeneral anterior;
+	NodoGeneral siguiente;
 
 	final static String TITLE_MENU = "**ARBOLBB**";
 
@@ -338,22 +340,21 @@ public class ArbolBB {
 	public NodoBB getRaiz() {
 		return (raiz);
 	}
-	
+
 	public void mostrarListaGeneralizada(NodoGeneral p) {
-		if(p != null) {
+		if (p != null) {
 			System.out.println("Dato" + p.getDato());
 			if (p.noHijos > 0) {
 				for (int i = 0; i < p.noHijos; i++) {
 					mostrarListaGeneralizada(p.hijos[i]);
-				}					
+				}
 			}
-		}else {			
+		} else {
 			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 		}
 
-		
 	}
-	
+
 	public void mostrarRaiz() {
 		System.out.println("La raiz es:" + nodoRaiz.getDato());
 	}
@@ -361,30 +362,78 @@ public class ArbolBB {
 	public void buscarDato(String dato) {
 		buscarDato(nodoRaiz, dato);
 	}
-	
-	public void buscarDato(NodoGeneral p,String dato) {
-		
-		if(p != null) {			
+
+	public void buscarDato(NodoGeneral p, String dato) {
+
+		if (p != null) {
 			if (p.getDato().equals(dato)) {
 				System.out.println("Dato esta en la raiz");
-			}else {
+			} else {
 				if (p.noHijos > 0) {
 					for (int i = 0; i < p.noHijos; i++) {
 						if (p.hijos[i].getDato().equals(dato)) {
 							System.out.println("El dato existe!");
 							return;
-						}else {
-							buscarDato(p.hijos[i],dato);
+						} else {
+							buscarDato(p.hijos[i], dato);
 						}
-						
-					}					
+
+					}
 				}
 			}
-			
-		}else {			
+
+		} else {
 			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 		}
 
+	}
+
+	public void eliminarDatoGeneralizado() {
+		eliminarDatosGeneralizado(nodoRaiz,"1");
+
+	}
+
+	public void eliminarDatosGeneralizado(NodoGeneral p,String dato) {
+
+		if (p.getDato().equals(dato)) {
+			nodoRaiz = cambiarNodo(p);
+		} else {
+			///
+		}
+
+	}
+	
+	public NodoGeneral cambiarNodo(NodoGeneral p) {
+		NodoGeneral aux = null;
+		aux =  p.hijos[0];
+		NodoGeneral auxHijos[] = new NodoGeneral[aux.noHijos];		
+		if (aux.noHijos > 0) {
+			for (int j = 0; j < aux.noHijos; j++) {
+				auxHijos[j] = aux.hijos[j];
+			}
+		}
+		
+		aux.hijos = new NodoGeneral[p.noHijos-1];
+		for (int i = 0; i < p.noHijos-1; i++) {
+			aux.hijos[i] = p.hijos[i+1];	
+		}
+		
+		if (auxHijos.length >= 0) {
+			int contarSubhijos = 0;
+			if (aux.hijos[0].hijos == null) {				
+				aux.hijos[0].hijos = new NodoGeneral[auxHijos.length];
+			}else {
+				contarSubhijos = aux.hijos[0].hijos.length;
+			}
+			
+			for (int i = 0; i < auxHijos.length; i++) {
+				aux.hijos[0].hijos[i + contarSubhijos] = auxHijos[i];		
+			}
+		}	
+		
+		aux.noHijos = aux.hijos.length;
+		
+		return aux;
 		
 	}
 	
