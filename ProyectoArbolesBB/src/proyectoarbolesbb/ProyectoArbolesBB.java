@@ -21,6 +21,7 @@ public class ProyectoArbolesBB {
                 + "\n7. Mostrar Grado DatoLG"
                 + "\n8. Mostrar Hojas LG"
                 + "\n9. Mostrar Hijos de un padre"
+                + "\n10. Mostrar el padre de un dato dado"
                 + "\n15. Eliminar dato"
                 + "\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
@@ -79,7 +80,7 @@ public class ProyectoArbolesBB {
                 	arbol.insertarArbolGeneral(datoArbolGeneralizado, null);
 
                 	while (validarIngresoDatos == 0) {
-                		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desa ingresar mas información ingrese 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
+                		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desa ingresar mas informaciï¿½n ingrese 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
 						if (validarIngresoDatos == 0) {
 							datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
 							padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
@@ -114,6 +115,10 @@ public class ProyectoArbolesBB {
                 	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	arbol.mostrarHijoDePadre(datoArbolGeneralizado);
                     break;   
+                case 10:
+                	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                	arbol.mostrarPadreDatoDato(arbol.nodoRaiz,datoArbolGeneralizado);
+                    break;                     
                 case 15:
                     datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                         arbol.eliminarDatoGeneralizado(datoArbolGeneralizado);

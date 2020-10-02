@@ -588,4 +588,22 @@ public class ArbolBB {
 		}
 
 	}
+        
+         public void mostrarPadreDatoDato(NodoGeneral p, String dato) {
+		if (p != null) {
+                    if (p.noHijos > 0) {
+                        for (int i = 0; i < p.noHijos; i++) {
+                            if(p.hijos[i].getDato().equals(dato)){
+                                JOptionPane.showMessageDialog(null, "El padre del dato es "+ p.getDato(), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+                                return;                                      
+                            }else{
+                                mostrarPadreDatoDato(p.hijos[i], dato);
+                            }
+                        }
+                    }
+		} else {
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+
+	}        
 }
