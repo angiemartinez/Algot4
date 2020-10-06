@@ -12,13 +12,17 @@ public class ArbolBB {
 	NodoGeneral nodoRaiz;
 	NodoGeneralizado raizGeneralizada;
 	int conthojas = 0;
-
+	NodoGeneral aux;
+	NodoGeneral auxHijo;
+	
 	final static String TITLE_MENU = "**ARBOLBB**";
 
 	// Método Constructor
 	public ArbolBB() {
 		raiz = null;
 		raizGeneralizada = null;
+		aux = null;
+		auxHijo = null;
 	}
 
 	// Método Recorer IN-ORDEN
@@ -388,21 +392,26 @@ public class ArbolBB {
 	}
 
 	public void eliminarDatoGeneralizado(String dato) {
-		eliminarDatosGeneralizado(nodoRaiz, dato);
-
+		eliminarDatosGeneralizado(nodoRaiz, dato, null);
 	}
 
-	public void eliminarDatosGeneralizado(NodoGeneral p, String dato) {
+	public void eliminarDatosGeneralizado(NodoGeneral p, String dato, String padre) {
 
-		if (p.getDato().equals(dato)) {
-			nodoRaiz = cambiarNodo(p);
+		if (nodoRaiz.getDato().equals(dato)) {
+			nodoRaiz = cambiarNodoRaiz(p);
 		} else {
-			///
-		}
+			if (!p.getDato().equals(dato)) {
+				aux = insertarArbolGeneralizado(aux, p.getDato(), padre);
+			}
 
+			for (int i = 0; i < p.noHijos; i++) {
+				eliminarDatosGeneralizado(p.hijos[i], dato, p.getDato());
+			}
+
+		}
 	}
 
-	public NodoGeneral cambiarNodo(NodoGeneral p) {
+	public NodoGeneral cambiarNodoRaiz(NodoGeneral p) {
 		NodoGeneral aux = null;
 		aux = p.hijos[0];
 		NodoGeneral auxHijos[] = new NodoGeneral[aux.noHijos];
@@ -483,7 +492,7 @@ public class ArbolBB {
 				JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void contarHojaDetalle(NodoGeneral p) {		
+	public void contarHojaDetalle(NodoGeneral p) {
 		if (p != null) {
 			if (p.noHijos > 0) {
 				for (int i = 0; i < p.noHijos; i++) {
@@ -493,10 +502,10 @@ public class ArbolBB {
 				conthojas = conthojas + 1;
 			}
 		}
-		
+
 	}
 
-	public void mostrarHoja(NodoGeneral p) {		
+	public void mostrarHoja(NodoGeneral p) {
 		if (p != null) {
 			if (p.noHijos > 0) {
 				for (int i = 0; i < p.noHijos; i++) {
@@ -506,10 +515,9 @@ public class ArbolBB {
 				System.out.println("La hoja es:" + p.getDato());
 			}
 		}
-		
+
 	}
-	
-	
+
 	public void mostrarHijoDePadre(String dato) {
 		mostrarHijoDePadre(nodoRaiz, dato);
 	}
@@ -521,7 +529,7 @@ public class ArbolBB {
 				for (int j = 0; j < p.noHijos; j++) {
 					System.out.println("Los hijos de " + dato + " es:" + p.hijos[j].getDato());
 				}
-				
+
 			} else {
 				if (p.noHijos > 0) {
 					for (int i = 0; i < p.noHijos; i++) {
@@ -543,7 +551,6 @@ public class ArbolBB {
 		}
 
 	}
-
 
 	public void mostrarGdatoLG(NodoGeneral p) {
 		if (p != null) {
@@ -588,22 +595,23 @@ public class ArbolBB {
 		}
 
 	}
-        
-         public void mostrarPadreDatoDato(NodoGeneral p, String dato) {
+
+	public void mostrarPadreDatoDato(NodoGeneral p, String dato) {
 		if (p != null) {
-                    if (p.noHijos > 0) {
-                        for (int i = 0; i < p.noHijos; i++) {
-                            if(p.hijos[i].getDato().equals(dato)){
-                                JOptionPane.showMessageDialog(null, "El padre del dato es "+ p.getDato(), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
-                                return;                                      
-                            }else{
-                                mostrarPadreDatoDato(p.hijos[i], dato);
-                            }
-                        }
-                    }
+			if (p.noHijos > 0) {
+				for (int i = 0; i < p.noHijos; i++) {
+					if (p.hijos[i].getDato().equals(dato)) {
+						JOptionPane.showMessageDialog(null, "El padre del dato es " + p.getDato(), TITLE_MENU,
+								JOptionPane.ERROR_MESSAGE);
+						return;
+					} else {
+						mostrarPadreDatoDato(p.hijos[i], dato);
+					}
+				}
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 		}
 
-	}        
+	}
 }

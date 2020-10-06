@@ -121,7 +121,7 @@ public class ProyectoArbolesBB {
                     break;                     
                 case 15:
                     datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
-                        arbol.eliminarDatoGeneralizado(datoArbolGeneralizado);
+                    arbol.eliminarDatoGeneralizado(datoArbolGeneralizado);
                     break;                     
                 case 0:
                     System.exit(0);
