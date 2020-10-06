@@ -407,6 +407,14 @@ public class ArbolBB {
 		} else {
 			if (!p.getDato().equals(dato)) {
 				aux = insertarArbolGeneralizado(aux, p.getDato(), padre);
+			}else {
+				if (p.noHijos > 0) {
+					for (int i = 0; i < p.noHijos; i++) {
+						//aux papa
+						aux = insertarArbolGeneralizado(aux, p.hijos[i].getDato(), padre);
+					}
+					
+				}				
 			}
 
 			for (int i = 0; i < p.noHijos; i++) {

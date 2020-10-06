@@ -25,7 +25,7 @@ public class ProyectoArbolesBB {
                 + "\n11. Mostrar grado del árbol"
                 + "\n12. Mostrar Altura"
                 + "\n13. Mostrar Nivel de un dato dato"
-                + "\n15. Eliminar dato"
+                + "\n14. Eliminar dato"
                 + "\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
         String nombreInsertar;
@@ -134,7 +134,7 @@ public class ProyectoArbolesBB {
                         datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	arbol.mostrarNivelLG(arbol.nodoRaiz, 1, datoArbolGeneralizado);
                 	break;                           
-                case 15:
+                case 14:
                     datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                     arbol.eliminarDatoGeneralizado(datoArbolGeneralizado);
                     break;                     
