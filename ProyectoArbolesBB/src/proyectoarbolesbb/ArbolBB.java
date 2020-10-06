@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 public class ArbolBB {
 	NodoBB raiz;
 	int altura = 0;
+        String padre = "";
 	NodoGeneral hijosAux[];
 	NodoGeneral nodoRaiz;
 	NodoGeneralizado raizGeneralizada;
@@ -15,6 +16,10 @@ public class ArbolBB {
 	NodoGeneral aux;
 	NodoGeneral auxHijo;
 	
+        int grado = 0;
+        int nivelAux = 1;
+        int nivelDatoDado = 0;
+
 	final static String TITLE_MENU = "**ARBOLBB**";
 
 	// Método Constructor
@@ -598,20 +603,97 @@ public class ArbolBB {
 
 	public void mostrarPadreDatoDato(NodoGeneral p, String dato) {
 		if (p != null) {
-			if (p.noHijos > 0) {
-				for (int i = 0; i < p.noHijos; i++) {
-					if (p.hijos[i].getDato().equals(dato)) {
-						JOptionPane.showMessageDialog(null, "El padre del dato es " + p.getDato(), TITLE_MENU,
-								JOptionPane.ERROR_MESSAGE);
-						return;
-					} else {
-						mostrarPadreDatoDato(p.hijos[i], dato);
-					}
-				}
-			}
+                    if(nodoRaiz.getDato().equals(dato)){
+                        JOptionPane.showMessageDialog(null, "El dato es la raíz", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        
+                        if (p.noHijos > 0) {
+                            for (int i = 0; i < p.noHijos; i++) {
+                                if(p.hijos[i].getDato().equals(dato)){
+                                    JOptionPane.showMessageDialog(null, "El padre del dato es "+ p.getDato(), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+                                    return;                                      
+                                }else{
+                                    mostrarPadreDatoDato(p.hijos[i], dato);
+                                }
+                            }
+                        }                        
+                    }
 		} else {
 			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 		}
 
+	}    
+
+	public void mostrarGradoArbol(NodoGeneral p) {
+		
+            JOptionPane.showMessageDialog(null, "El grado es "+ mostrarGradoArbolDetalle(p), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+        }  
+        
+	public int mostrarGradoArbolDetalle(NodoGeneral p) {
+		if (p != null) {
+			
+                    if (p.noHijos > 0) {
+                            for (int i = 0; i < p.noHijos; i++) {
+                                if(p.noHijos > grado)    {
+                                    grado = p.noHijos;
+                                }
+                                mostrarGradoArbolDetalle(p.hijos[i]);
+                            }
+                    }
+		} else {
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+              return grado;
+	}    
+        
+        	// Método para mostrar la altura del árbol
+	public void mostrarAlturaLG() {
+		// Cuando la raiz es diferente de null es porque hay 1 nivel
+		mostrarAlturaLG(nodoRaiz, 1);
+		JOptionPane.showMessageDialog(null, "La altura es " + (altura+ 1), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 	}
+        
+	public void mostrarAlturaLG(NodoGeneral p, int nivel) {
+		if (p != null) {
+			if (p.noHijos > 0) {
+                            for (int i = 0; i < p.noHijos; i++) {
+                                if(i == 0){
+                                    if (nivel > altura) {
+                                        altura = nivel;
+                                    }  
+                                }else{
+
+                                }
+                                mostrarAlturaLG(p.hijos[i], nivel +1);
+                            }
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+	}    
+             
+	public void mostrarNivelLG(NodoGeneral p, int nivel, String dato) {
+		if (p != null) {
+			if (p.noHijos > 0) {
+                            for (int i = 0; i < p.noHijos; i++) {
+                                if(i == 0){
+                                    if (nivel > altura) {
+                                        altura = nivel;
+
+                                    }  
+                                }else{
+
+                                }
+                                if(p.hijos[i].getDato().equals(dato)){
+                                JOptionPane.showMessageDialog(null, "El nivel es " + (nivel+ 1), TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+                                return;
+                                }
+                                mostrarNivelLG(p.hijos[i], nivel +1, dato);
+                            }
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "La lista se encuentra vacia", TITLE_MENU, JOptionPane.ERROR_MESSAGE);
+		}
+	}         
+        
 }

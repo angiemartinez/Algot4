@@ -22,6 +22,9 @@ public class ProyectoArbolesBB {
                 + "\n8. Mostrar Hojas LG"
                 + "\n9. Mostrar Hijos de un padre"
                 + "\n10. Mostrar el padre de un dato dado"
+                + "\n11. Mostrar grado del árbol"
+                + "\n12. Mostrar Altura"
+                + "\n13. Mostrar Nivel de un dato dato"
                 + "\n15. Eliminar dato"
                 + "\n0. SALIR";
         int edadInsertar,nivelABuscar,opcion;
@@ -118,7 +121,19 @@ public class ProyectoArbolesBB {
                 case 10:
                 	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	arbol.mostrarPadreDatoDato(arbol.nodoRaiz,datoArbolGeneralizado);
-                    break;                     
+                    break;    
+                    
+                case 11:   
+                	arbol.mostrarGradoArbol(arbol.nodoRaiz);
+                	break;    
+                case 12:   
+                	arbol.mostrarAlturaLG();
+                	break;     
+                        
+                case 13:   
+                        datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
+                	arbol.mostrarNivelLG(arbol.nodoRaiz, 1, datoArbolGeneralizado);
+                	break;                           
                 case 15:
                     datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                     arbol.eliminarDatoGeneralizado(datoArbolGeneralizado);
