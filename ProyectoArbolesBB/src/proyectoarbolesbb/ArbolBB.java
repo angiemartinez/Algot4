@@ -397,10 +397,10 @@ public class ArbolBB {
 	}
 
 	public void eliminarDatoGeneralizado(String dato) {
-		eliminarDatosGeneralizado(nodoRaiz, dato, null);
+		nodoRaiz  = eliminarDatosGeneralizado(nodoRaiz, dato, null);
 	}
 
-	public void eliminarDatosGeneralizado(NodoGeneral p, String dato, String padre) {
+	public NodoGeneral eliminarDatosGeneralizado(NodoGeneral p, String dato, String padre) {
 
 		if (nodoRaiz.getDato().equals(dato)) {
 			nodoRaiz = cambiarNodoRaiz(p);
@@ -410,7 +410,6 @@ public class ArbolBB {
 			}else {
 				if (p.noHijos > 0) {
 					for (int i = 0; i < p.noHijos; i++) {
-						//aux papa
 						aux = insertarArbolGeneralizado(aux, p.hijos[i].getDato(), padre);
 					}
 					
@@ -422,10 +421,11 @@ public class ArbolBB {
 			}
 
 		}
+		return aux;
 	}
 
 	public NodoGeneral cambiarNodoRaiz(NodoGeneral p) {
-		NodoGeneral aux = null;
+		
 		aux = p.hijos[0];
 		NodoGeneral auxHijos[] = new NodoGeneral[aux.noHijos];
 		if (aux.noHijos > 0) {
