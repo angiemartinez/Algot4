@@ -596,7 +596,7 @@ public class ArbolBB {
 									TITLE_MENU, JOptionPane.ERROR_MESSAGE);
 							return;
 						} else {
-							buscarDato(p.hijos[i], dato);
+							mostrarGradoDatoLG(p.hijos[i], dato);
 						}
 
 					}
