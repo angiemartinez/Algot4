@@ -80,7 +80,13 @@ public class ProyectoArbolesBB {
                 	
                 	datoArbolGeneralizado = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
                 	padre = JOptionPane.showInputDialog(null, "Ingrese padre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);
-                	arbol.insertarArbolGeneral(datoArbolGeneralizado, null);
+                	
+                	if (arbol.nodoRaiz == null) {                    	
+                    	arbol.insertarArbolGeneral(datoArbolGeneralizado, null);
+					}else {
+                    	arbol.insertarArbolGeneral(datoArbolGeneralizado, padre);						
+					}
+
 
                 	while (validarIngresoDatos == 0) {
                 		validarIngresoDatos = Integer.parseInt(JOptionPane.showInputDialog(null, "Si desa ingresar mas informaci�n ingrese 0, de lo contrario marque 1", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE));
