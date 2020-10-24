@@ -16,6 +16,8 @@ public class EntregableER {
     final static String TITLE_MENU = "**ARBOLBB**";  
         public static void main(String[] args) {
             
+            ejericcios ejercicio = new ejericcios();
+            String cadena = null;
             int opcion;
            
             String menu ="****Expresiones Irregulares****"
@@ -37,8 +39,25 @@ public class EntregableER {
             switch(opcion){ 
             
             case 1: 
+                cadena = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
+                ejercicio.placa(cadena);
               break;
-            }
+
+            case 2: 
+              break;
+
+            case 4: 
+                cadena = JOptionPane.showInputDialog(null, "Ingrese dato:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
+                ejercicio.direccion(cadena);                
+              break;
+
+            case 5: 
+                
+              break;
+
+            case 6: 
+              break;
+            }        
 
         } while(opcion != 0);             
   }
