@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ejericcios {
     
     public void placa(String dato){
-        Pattern patron = Pattern.compile("^[A-Z]{3}[0-9]{3}º",Pattern.CASE_INSENSITIVE); //solo binarios
+        Pattern patron = Pattern.compile("^[A-Z]{1,3}[0-9]{3,4}",Pattern.CASE_INSENSITIVE); //solo binarios
         Matcher resultado = patron.matcher(dato);
         if (resultado.matches()) { //valida cadena completa
                 JOptionPane.showMessageDialog(null, "Cumple");
@@ -25,9 +25,20 @@ public class ejericcios {
         };         
     }
     
+    public void celular(String dato){
+        Pattern patron = Pattern.compile("(^(300|301|302|303|304|305|310|311|312|313|314|315|316|317|318|319|320|321|322|323|350)*)[-][0-9]{3}[-][0-9]{2}[-][0-9]{2}",Pattern.CASE_INSENSITIVE); //solo binarios
+       
+        Matcher resultado = patron.matcher(dato);
+        if (resultado.matches()) { //valida cadena completa
+                JOptionPane.showMessageDialog(null, "Cumple");
+        }else {
+                JOptionPane.showMessageDialog(null, "no cumple");
+        };         
+    }
+        
     public void fijos(String dato){
              
-        Pattern patron = Pattern.compile("(\\+34|0034|34)?[ -]*(8|9)[ -]*([0-9][ -]*){8}",Pattern.CASE_INSENSITIVE); //solo binarios
+        Pattern patron = Pattern.compile("(^(2|4|5|6)*)[0-9]{2}[-][0-9]{2}[-][0-9]{2}",Pattern.CASE_INSENSITIVE); //solo binarios
         Matcher resultado = patron.matcher(dato);
         if (resultado.matches()) { //valida cadena completa
                 JOptionPane.showMessageDialog(null, "Cumple");
@@ -36,6 +47,16 @@ public class ejericcios {
         };          
     }  
     
+    public void cedula(int dato){
+        
+        Pattern patron = Pattern.compile("(^(1|2|3|4|5|6|7|8|9)*)[0-9]{6,10}",Pattern.CASE_INSENSITIVE); //solo binarios
+        Matcher resultado = patron.matcher(String.valueOf(dato));
+        if (resultado.matches()) { //valida cadena completa
+                JOptionPane.showMessageDialog(null, "Cumple");
+        }else {
+                JOptionPane.showMessageDialog(null, "no cumple");
+        };          
+    }  
     
     public void email(String dato){
              
@@ -59,11 +80,7 @@ public class ejericcios {
                 JOptionPane.showMessageDialog(null, "no cumple");
         };          
     }      
-    
-    public void celular(String dato){
-              
-    } 
-    
+
     public void url(String dato){
         Pattern patron = Pattern.compile("^https?:\\/\\/[\\w\\-]+(\\.[\\w\\-]+)+[/#?]?.*$",Pattern.CASE_INSENSITIVE); //solo binarios
                                                                    // \\w?\\s*#\\s*[0-9]+(-)[0-9]+
@@ -86,7 +103,7 @@ public class ejericcios {
         };         
     }    
     
-    public void contraena(String dato){
+    public void contrasena(String dato){
         
         /*La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
         Ejemplo:
@@ -100,5 +117,16 @@ public class ejericcios {
                 JOptionPane.showMessageDialog(null, "no cumple");
         };         
     }  
-         
+    
+    public void fecha(String dato){
+        
+        //Fecha evaluada del 1900 hasta 2999 dd-mm-yyyy
+        Pattern patron = Pattern.compile("^(0[1-9]|1\\d|2[0-8]|29(?=-\\d\\d-(?!1[01345789]00|2[1235679]00)\\d\\d(?:[02468][048]|[13579][26]))|30(?!-02)|31(?=-0[13578]|-1[02]))-(0[1-9]|1[0-2])-([12]\\d{3})(\\s([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d))?",Pattern.CASE_INSENSITIVE);                                                              
+        Matcher resultado = patron.matcher(dato);
+        if (resultado.matches()) { //valida cadena completa
+                JOptionPane.showMessageDialog(null, "Cumple");
+        }else {
+                JOptionPane.showMessageDialog(null, "no cumple");
+        };         
+    }      
 }
