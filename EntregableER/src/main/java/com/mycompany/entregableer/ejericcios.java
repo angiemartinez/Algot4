@@ -49,7 +49,8 @@ public class ejericcios {
     
     public void cedula(int dato){
         
-        Pattern patron = Pattern.compile("(^(1|2|3|4|5|6|7|8|9)*)[0-9]{6,10}",Pattern.CASE_INSENSITIVE); //solo binarios
+        
+        Pattern patron = Pattern.compile("(^1[2-9]*)[0-9]{6,10}",Pattern.CASE_INSENSITIVE); //solo binarios
         Matcher resultado = patron.matcher(String.valueOf(dato));
         if (resultado.matches()) { //valida cadena completa
                 JOptionPane.showMessageDialog(null, "Cumple");
@@ -60,7 +61,7 @@ public class ejericcios {
     
     public void email(String dato){
              
-        Pattern patron = Pattern.compile("[\\w\\._]{5,30}\\+?[\\w]{0,10}@[\\w\\.\\-]{3,}\\.\\w{2,5}",Pattern.CASE_INSENSITIVE); //solo binarios
+        Pattern patron = Pattern.compile("[a-zA-Z\\d]{5,30}\\+?[\\w]{0,10}@[\\w\\.\\-]{3,}\\.\\w{2,5}",Pattern.CASE_INSENSITIVE); 
         Matcher resultado = patron.matcher(dato);
         if (resultado.matches()) { //valida cadena completa
                 JOptionPane.showMessageDialog(null, "Cumple");
@@ -93,7 +94,7 @@ public class ejericcios {
     }      
     
     public void direccion(String dato){
-        Pattern patron = Pattern.compile("((calle|carrera|diagonal|transversal)\\s*[0-9]{1,3})\\w?\\s*#\\s*[0-9]{1,3}",Pattern.CASE_INSENSITIVE); //solo binarios
+        Pattern patron = Pattern.compile("^((calle|carrera|diagonal|transversal)\\s*[0-9]{1,3})\\w?\\s*#\\s*[0-9]{1,3}",Pattern.CASE_INSENSITIVE); //solo binarios
                                                                    // \\w?\\s*#\\s*[0-9]+(-)[0-9]+
         Matcher resultado = patron.matcher(dato);
         if (resultado.matches()) { //valida cadena completa
@@ -105,7 +106,7 @@ public class ejericcios {
     
     public void contrasena(String dato){
         
-        /*La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+        /*La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una letra y al menos un caracter especial.
         Ejemplo:
         w3Unpo<code>t0d0*/        
         

@@ -28,11 +28,11 @@ public class EntregableER {
                 + "\n4. Direcciones residenciales en Medellín" /*Listo*/
                 + "\n5. Direcciones de correos electrónicos" /*Listo*/
                 + "\n6. Fecha en formato dd-mm-aaaa" // Listo
-                + "\n7. Cedulas en Colombia"  //Listo               
+                + "\n7. Cedulas en Colombia"  //Listo
+            	+ "\n8. Validar frase"                    
                 + "\n9. URL"/*Listo*/
                 + "\n10. Nombres y apellidos" /*Listo*/
-                + "\n11. Contraseña segura" /*Listo*/
-            	+ "\n12. Validar frase"; /*Listo*/
+                + "\n11. Contraseña segura" /*Listo*/; 
             
             
             //https://www.regextester.com/97987
@@ -75,18 +75,23 @@ public class EntregableER {
                 ejercicio.cedula(cadenaNumero);  
               break;
               
-            case 8: 
+            /*case 8: 
                 cadena = JOptionPane.showInputDialog(null, "Ingrese la url:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
                 ejercicio.url(cadena);                   
-              break;                
+              break;    */            
               
             case 9: 
-                cadena = JOptionPane.showInputDialog(null, "Ingrese los nombres:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
-                ejercicio.nombres(cadena);                   
+                cadena = JOptionPane.showInputDialog(null, "Ingrese la URL:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
+                ejercicio.url(cadena);                   
               break;     
               
             case 10: 
-                cadena = JOptionPane.showInputDialog(null, "Ingrese la clave:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
+                cadena = JOptionPane.showInputDialog(null, "Ingrese el nombre:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
+                ejercicio.nombres(cadena);                   
+              break;       
+              
+            case 11: 
+                cadena = JOptionPane.showInputDialog(null, "Ingrese la contraseña:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
                 ejercicio.contrasena(cadena);                   
               break;                
             }        
