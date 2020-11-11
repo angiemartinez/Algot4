@@ -20,6 +20,12 @@ public class EntregableER {
             String cadena = null;
             int cadenaNumero;
             int opcion;
+            String frase = "Felicidades, usted ha sido seleccionado "
+            		+ "como el feliz ganador "
+            		+ "de un Chevrolet Spark GT cero. Para reclamar su premio, envio un email a "
+            		+ "cherolet@gmail.com y un asesor lo guiará en el proceso. "
+            		+ "Si usted recibe este mensaje de texto, ¡cuidado!, descártelo de "
+            		+ "inmediato porque se trata de una estafa; denuncie al denuncias@policia.gov.co o delitos@hotmail.es";
            
             String menu ="****Expresiones Irregulares****"
                 + "\n1. Placas de carro el Colombia" /*Listo*/
@@ -32,7 +38,8 @@ public class EntregableER {
             	+ "\n8. Validar frase"                    
                 + "\n9. URL"/*Listo*/
                 + "\n10. Nombres y apellidos" /*Listo*/
-                + "\n11. Contraseña segura" /*Listo*/; 
+                + "\n11. Contraseña segura" /*Listo*/
+                + "\n12. Salir" /*Listo*/; 
             
             
             //https://www.regextester.com/97987
@@ -62,7 +69,7 @@ public class EntregableER {
 
             case 5: 
                 cadena = JOptionPane.showInputDialog(null, "Ingrese el email:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
-                ejercicio.email(cadena);                   
+                ejercicio.email(cadena,true);                   
               break;
 
             case 6: 
@@ -75,10 +82,9 @@ public class EntregableER {
                 ejercicio.cedula(cadenaNumero);  
               break;
               
-            /*case 8: 
-                cadena = JOptionPane.showInputDialog(null, "Ingrese la url:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
-                ejercicio.url(cadena);                   
-              break;    */            
+            case 8: 
+                ejercicio.email(frase,false);                   
+              break;              
               
             case 9: 
                 cadena = JOptionPane.showInputDialog(null, "Ingrese la URL:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
@@ -93,7 +99,10 @@ public class EntregableER {
             case 11: 
                 cadena = JOptionPane.showInputDialog(null, "Ingrese la contraseña:", TITLE_MENU, JOptionPane.INFORMATION_MESSAGE);    
                 ejercicio.contrasena(cadena);                   
-              break;                
+              break;    
+            case 12:
+            	System.exit(0);
+            break;
             }        
 
         } while(opcion != 0);             
