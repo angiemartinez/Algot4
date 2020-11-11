@@ -55,7 +55,7 @@ public class ejericcios {
 
 	public void cedula(int dato) {
 
-		Pattern patron = Pattern.compile("(^1[2-9]*)[0-9]{6,10}", Pattern.CASE_INSENSITIVE); // solo binarios
+		Pattern patron = Pattern.compile("(^[1-9]*)[0-9]{6,10}", Pattern.CASE_INSENSITIVE); // solo binarios
 		Matcher resultado = patron.matcher(String.valueOf(dato));
 		if (resultado.matches()) { // valida cadena completa
 			JOptionPane.showMessageDialog(null, "Cumple");
